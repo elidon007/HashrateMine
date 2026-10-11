@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HashrateMine</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:#f4f6ff;font-family:Arial,sans-serif}
+header{padding:22px 18px;background:#111a30;border-bottom:1px solid #263451}
+.logo{font-size:25px;font-weight:bold;color:#58e0b1}
+.logo span{color:white}
+header p{color:#a7b3cb;font-size:13px}
+main{max-width:900px;margin:auto;padding:18px}
+.card{background:#141e34;border:1px solid #283754;border-radius:16px;padding:20px;margin-bottom:16px}
+h2{font-size:18px;margin-top:0}
+.muted{color:#a7b3cb;font-size:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.amount{font-size:24px;font-weight:bold;margin:12px 0}
+.doge{color:#ffd45b}.pol{color:#b9a0ff}.green{color:#58e0b1}
+button{width:100%;padding:13px;border:0;border-radius:10px;background:#58e0b1;color:#071b18;font-weight:bold;font-size:15px;margin-top:10px}
+button.secondary{background:#263653;color:white}
+button:disabled{opacity:.5}
+.progress{height:8px;background:#293652;border-radius:8px;overflow:hidden;margin-top:12px}
+.progress div{height:100%;width:35%;background:#58e0b1}
+footer{text-align:center;color:#8190aa;font-size:12px;padding:25px}
+@media(min-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Hashrate<span>Mine</span></div>
+  <p>Virtual mining dashboard</p>
+</header>
+<main>
+  <section class="card">
+    <p class="muted">YOUR VIRTUAL HASHRATE</p>
+    <div class="amount green" id="hash">100 H/s</div>
+    <p class="muted">Demo mining rate · Rewards are simulated</p>
+    <div class="progress"><div></div></div>
+  </section>
+  <div class="stats">
+    <section class="card">
+      <h2 class="doge">DOGE Balance</h2>
+      <div class="amount" id="doge">0.00000000</div>
+      <p class="muted">Demo balance</p>
+    </section>
+    <section class="card">
+      <h2 class="pol">POL Balance</h2>
+      <div class="amount" id="pol">0.00000000</div>
+      <p class="muted">Demo balance</p>
+    </section>
+  </div>
+  <section class="card">
+    <h2>Daily bonus</h2>
+    <p class="muted">Claim your daily virtual points.</p>
+    <button onclick="bonus()">Claim daily bonus</button>
+    <p id="bonusmsg" class="muted"></p>
+  </section>
+  <section class="card">
+    <h2>Mining boost</h2>
+    <p class="muted">Activate a temporary demo boost.</p>
+    <button class="secondary" onclick="boost()">Activate 3-hour boost</button>
+    <p id="boostmsg" class="muted"></p>
+  </section>
+  <section class="card">
+    <h2>Tasks</h2>
+    <p class="muted">Demo task: visit the dashboard daily.</p>
+    <button class="secondary" onclick="task()">Complete demo task</button>
+    <p id="taskmsg" class="muted"></p>
+  </section>
+  <section class="card">
+    <h2>Withdrawals</h2>
+    <p class="muted">Real DOGE/POL withdrawals are not active. This demo does not send cryptocurrency.</p>
+    <button disabled>Withdraw — coming later</button>
+  </section>
+</main>
+<footer>HashrateMine · Virtual mining demo</footer>
+<script>
+let points=0, boosted=false;
+function bonus(){
+ points+=10;
+ document.getElementById('doge').textContent=points.toFixed(8);
+ document.getElementById('bonusmsg').textContent='Demo bonus added: 10 virtual points.';
+}
+function boost(){
+ if(boosted){document.getElementById('boostmsg').textContent='Boost already activated in this demo.';return}
+ boosted=true;
+ document.getElementById('hash').textContent='200 H/s';
+ document.getElementById('boostmsg').textContent='Demo boost activated. Refreshing resets it.';
+}
+function task(){
+ points+=5;
+ document.getElementById('pol').textContent=points.toFixed(8);
+ document.getElementById('taskmsg').textContent='Demo task completed: 5 virtual points added.';
+}
+</script>
+</body>
+</html>
